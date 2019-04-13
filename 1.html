@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script scr="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<div id="warp">
+<div id="instagram-container">
+<h1>My instargram Feed</h1>
+<div id="instagram-myfeed"></div>
+<script>
+var access_token="12400247300.6b46320.0629b869445d44e8a97f25c025e73a77"
+var api_endpoint="https://api.instagram.com/v1/users/self/media/recent/?access_token"+access_token;
+
+$.get( api_endpoint,function(json){
+
+  var instarbanner=$('#instagram-myfeed');
+  var outputHtml="";
+  outputHtml+='<ul>';
+
+  var limit=4;
+  var myfeed=json.data;
+  for(var i=0;i<limit;i++){
+
+    outputHtml+='<li>';
+    outputHtml+='<img src="'+myfeed[i].images.thumbnail.url+'"/>';
+      outputHtml+='</li>';
+  }
+  outputHtml+='</ul>';
+  instarbanner.html(outputHtml);
+});
+</script>
+</div>
+</div>
+</body>
+</html>
